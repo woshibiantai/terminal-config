@@ -29,8 +29,10 @@ set mouse=a
 set splitbelow splitright
 set foldmethod=indent foldnestmax=10 nofoldenable foldlevel=2
 
+set cursorline
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_termcolors=16
 
 " mapping shortcuts
 let mapleader = "\,"
