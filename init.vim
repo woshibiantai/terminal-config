@@ -3,6 +3,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/airblade/vim-gitgutter.git'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'w0rp/ale'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -10,45 +13,53 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'https://tpope.io/vim/commentary.git'
 Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'https://tpope.io/vim/surround.git'
 
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'morhetz/gruvbox'
 
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
-Plug 'https://github.com/Shougo/neco-syntax.git'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/leafgarland/typescript-vim.git'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'mattn/emmet-vim'
 call plug#end()
 
-set expandtab tabstop=4 shiftwidth=4 smarttab
+set expandtab tabstop=2 shiftwidth=2 smarttab
 set smartcase
+set mouse=a
+set splitbelow splitright
+set foldmethod=indent foldnestmax=10 nofoldenable foldlevel=2
+
 colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
 
 " mapping shortcuts
 let mapleader = "\,"
 inoremap jh <Esc>
+noremap <c-c> "*y<CR>
 
 noremap <space> /
 noremap <space><CR> :noh<CR>
+inoremap <c-v> <esc>"+pa
 
-noremap <c-s> <Esc>:update<CR>
-vnoremap <c-s> <Esc>:update<CR>
-inoremap <c-s> <Esc>:update<CR>
+noremap <C-s> <Esc>:update<CR>
+vnoremap <C-s> <Esc>:update<CR>
+inoremap <C-s> <Esc>:update<CR>
+noremap <C-w> <Esc>:q<CR>
+vnoremap <C-w> <Esc>:q<CR>
+inoremap <C-w> <Esc>:q<CR>
+noremap <C-q> <Esc>:q!<CR>
+vnoremap <C-q> <Esc>:q!<CR>
+inoremap <C-q> <Esc>:q!<CR>
 
-noremap <c-w> <Esc>:q<CR>
-vnoremap <c-w> <Esc>:q<CR>
-inoremap <c-w> <Esc>:q<CR>
+inoremap <C-h> :wincmd h<CR>
+noremap <C-h> :wincmd h<CR>
+inoremap <C-j> :wincmd j<CR>
+noremap <C-j> :wincmd j<CR>
+inoremap <C-k> :wincmd k<CR>
+noremap <C-k> :wincmd k<CR>
+inoremap <C-l> :wincmd l<CR>
+noremap <C-l> :wincmd l<CR>
 
-noremap <c-q> <Esc>:q!<CR>
-vnoremap <c-q> <Esc>:q!<CR>
-inoremap <c-q> <Esc>:q!<CR>
 
 " turn hybrid line numbers on
 :set number relativenumber
@@ -60,10 +71,6 @@ noremap <leader>nf :NERDTreeFind<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-
-" deoplete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-let g:deoplete#enable_at_startup = 1
 
 " vim-smooth-scroll 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
@@ -84,3 +91,24 @@ let g:typescript_indent_disable = 1
 let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 
+" coc.vim
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" emmet-vim
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
