@@ -7,6 +7,8 @@ Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'w0rp/ale'
 
+Plug 'yuttie/comfortable-motion.vim'
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -15,12 +17,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'https://tpope.io/vim/surround.git'
 
-Plug 'yuttie/comfortable-motion.vim'
-Plug 'morhetz/gruvbox'
-
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'https://github.com/leafgarland/typescript-vim.git'
-Plug 'mattn/emmet-vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 set expandtab tabstop=2 shiftwidth=2 smarttab
@@ -109,8 +107,22 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" emmet-vim
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+" coc-snippets
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+" coc-prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
