@@ -1,22 +1,35 @@
 call plug#begin('~/.config/nvim/plugged')
+" Navigation
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'justinmk/vim-sneak'
+
+" Git
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'w0rp/ale'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
+" Formatting
+Plug 'editorconfig/editorconfig-vim'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'https://tpope.io/vim/commentary.git'
+Plug 'https://tpope.io/vim/surround.git'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'jiangmiao/auto-pairs'
+
+" Visual
+Plug 'ayu-theme/ayu-vim'
+Plug 'Yggdroot/indentLine'
 Plug 'yuttie/comfortable-motion.vim'
-Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'https://tpope.io/vim/commentary.git'
-Plug 'jiangmiao/auto-pairs'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'https://tpope.io/vim/surround.git'
-
+" Completion
+Plug 'w0rp/ale'
+Plug 'mattn/emmet-vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
@@ -28,18 +41,13 @@ set splitbelow splitright
 set foldmethod=indent foldnestmax=10 nofoldenable foldlevel=2
 
 set cursorline
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_termcolors=16
 
 " mapping shortcuts
 let mapleader = "\,"
 inoremap jh <Esc>
 noremap <c-c> "*y<CR>
-
-noremap <space> /
-noremap <space><CR> :noh<CR>
 inoremap <c-v> <esc>"+pa
+noremap <space><CR> :noh<CR>
 
 noremap <C-s> <Esc>:update<CR>
 vnoremap <C-s> <Esc>:update<CR>
@@ -62,8 +70,8 @@ noremap <C-l> :wincmd l<CR>
 
 
 " turn hybrid line numbers on
-:set number relativenumber
-:set nu rnu
+set number relativenumber
+set nu rnu
 
 " nerdtree
 noremap <leader>nn :NERDTreeToggle<CR>
@@ -71,6 +79,8 @@ noremap <leader>nf :NERDTreeFind<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeShowLineNumbers=1
+autocmd FileType nerdtree setlocal relativenumber
 
 " vim-smooth-scroll 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
@@ -88,8 +98,7 @@ noremap <leader><S-p> :Commands<cr>
 let g:typescript_indent_disable = 1
 
 " vim-airline
-let g:airline_theme='gruvbox'
-let g:airline_powerline_fonts = 1
+let g:airline_theme='minimalist'
 
 " coc.vim
 function! s:check_back_space() abort
@@ -98,31 +107,37 @@ function! s:check_back_space() abort
 endfunction
 
 inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<Tab>" :
+  \ coc#refresh()
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" coc-snippets
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" nerdtree-git-plugin
+let g:NERDTreeIndicatorMapCustom = {
+  \ "Modified"  : "•",
+  \ "Staged"    : "+",
+  \ "Untracked" : "*",
+  \ "Renamed"   : "➜",
+  \ "Unmerged"  : "═",
+  \ "Deleted"   : "✖",
+  \ "Dirty"     : "x",
+  \ "Clean"     : "✔︎",
+  \ 'Ignored'   : '☒',
+  \ "Unknown"   : "?"
+  \ }
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" indentLine
+let g:indentLine_char = '|'
+let g:indentLine_first_char = '|'
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_setColors = 0
 
-let g:coc_snippet_next = '<tab>'
-
-" coc-prettier
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-
+" ayu-vim
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
