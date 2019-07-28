@@ -12,7 +12,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Formatting
 Plug 'editorconfig/editorconfig-vim'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'https://tpope.io/vim/commentary.git'
 Plug 'https://tpope.io/vim/surround.git'
 Plug 'terryma/vim-multiple-cursors'
