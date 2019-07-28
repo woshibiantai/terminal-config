@@ -20,7 +20,6 @@ Plug 'jiangmiao/auto-pairs'
 
 " Visual
 Plug 'ayu-theme/ayu-vim'
-Plug 'Yggdroot/indentLine'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -130,12 +129,6 @@ let g:NERDTreeIndicatorMapCustom = {
   \ 'Ignored'   : '☒',
   \ "Unknown"   : "?"
   \ }
-
-" indentLine
-let g:indentLine_char = '|'
-let g:indentLine_first_char = '|'
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_setColors = 0
 
 " ayu-vim
 set termguicolors
