@@ -66,10 +66,6 @@ noremap <C-k> :wincmd k<CR>
 inoremap <C-l> :wincmd l<CR>
 noremap <C-l> :wincmd l<CR>
 
-" turn hybrid line numbers on
-set number relativenumber
-set nu rnu
-
 " Switch tab with Cmd + [1-9].
 nnoremap <d-1> :tabn 1<CR>
 nnoremap <d-2> :tabn 2<CR>
@@ -94,7 +90,12 @@ inoremap <d-9> <C-o>:tabn 0<CR>
 
 " GUI settings
 set guifont=Menlo:h14
-set guioptions=
+set guioptions-=L
+set guioptions+=e
+
+" turn hybrid line numbers on
+set number relativenumber
+set nu rnu
 
 " nerdtree
 noremap <leader>nn :NERDTreeToggle<CR>

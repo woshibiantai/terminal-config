@@ -67,7 +67,6 @@ noremap <C-k> :wincmd k<CR>
 inoremap <C-l> :wincmd l<CR>
 noremap <C-l> :wincmd l<CR>
 
-
 " turn hybrid line numbers on
 set number relativenumber
 set nu rnu
