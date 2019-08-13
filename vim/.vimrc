@@ -25,20 +25,24 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Completion
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'mattn/emmet-vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
 
 set expandtab tabstop=2 shiftwidth=2 smarttab
+set ignorecase
 set smartcase
+set smartindent
 set mouse=a
 set splitbelow splitright
 set foldmethod=indent foldnestmax=10 nofoldenable foldlevel=2
 
 set cursorline
+set cmdheight=2
 
 " mapping shortcuts
 let mapleader = "\,"
@@ -47,23 +51,13 @@ noremap <c-c> "*y<CR>
 inoremap <c-v> <esc>"+pa
 noremap <space><CR> :noh<CR>
 
-noremap <C-s> <Esc>:update<CR>
-vnoremap <C-s> <Esc>:update<CR>
-inoremap <C-s> <Esc>:update<CR>
-noremap <C-w> <Esc>:q<CR>
-vnoremap <C-w> <Esc>:q<CR>
-inoremap <C-w> <Esc>:q<CR>
-noremap <C-q> <Esc>:q!<CR>
-vnoremap <C-q> <Esc>:q!<CR>
-inoremap <C-q> <Esc>:q!<CR>
-
-inoremap <C-h> :wincmd h<CR>
+inoremap <C-h> <C-o>:wincmd h<CR>
 noremap <C-h> :wincmd h<CR>
-inoremap <C-j> :wincmd j<CR>
+inoremap <C-j> <C-o>:wincmd j<CR>
 noremap <C-j> :wincmd j<CR>
-inoremap <C-k> :wincmd k<CR>
+inoremap <C-k> <C-o>:wincmd k<CR>
 noremap <C-k> :wincmd k<CR>
-inoremap <C-l> :wincmd l<CR>
+inoremap <C-l> <C-o>:wincmd l<CR>
 noremap <C-l> :wincmd l<CR>
 
 " Switch tab with Cmd + [1-9].
@@ -97,6 +91,9 @@ set guioptions+=e
 set number relativenumber
 set nu rnu
 
+" ale
+let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
+
 " nerdtree
 noremap <leader>nn :NERDTreeToggle<CR>
 noremap <leader>nf :NERDTreeFind<CR>
@@ -106,12 +103,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeShowLineNumbers=1
 autocmd FileType nerdtree setlocal relativenumber
 
-" vim-smooth-scroll 
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
-
+" fzf.vim
 noremap <leader>p :Files<cr>
 noremap <leader>f :BLines<cr>
 noremap <leader>b :Buffers<cr>
@@ -125,21 +117,8 @@ let g:typescript_indent_disable = 1
 let g:airline_theme='minimalist'
 
 " coc.vim
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<Tab>" :
-  \ coc#refresh()
-
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+set hidden
+set updatetime=300
 
 " nerdtree-git-plugin
 let g:NERDTreeIndicatorMapCustom = {
@@ -155,7 +134,29 @@ let g:NERDTreeIndicatorMapCustom = {
   \ "Unknown"   : "?"
   \ }
 
-" ayu-vim
+" ayu-vim colorscheme
 set termguicolors
 let ayucolor="mirage"
 colorscheme ayu
+
+" comfortable-motion
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+let g:comfortable_motion_no_default_key_mappings = 1
+let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
+nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
+nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
+nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
+
+" for use with svelte
+au BufNewFile,BufRead,BufReadPost *.svelte set syntax=html
+let g:ale_linter_aliases = {
+\   'svelte': ['javascript']
+\}
+let g:ale_linters = {
+\   'svelte': ['eslint']
+\}
+let g:ale_fixers = {
+\   'svelte': ['eslint']
+\}
