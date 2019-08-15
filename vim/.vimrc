@@ -97,7 +97,6 @@ let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
 " nerdtree
 noremap <leader>nn :NERDTreeToggle<CR>
 noremap <leader>nf :NERDTreeFind<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeShowLineNumbers=1
