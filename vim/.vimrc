@@ -150,12 +150,3 @@ nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impu
 
 " for use with svelte
 au BufNewFile,BufRead,BufReadPost *.svelte set syntax=html
-let g:ale_linter_aliases = {
-\   'svelte': ['javascript']
-\}
-let g:ale_linters = {
-\   'svelte': ['eslint']
-\}
-let g:ale_fixers = {
-\   'svelte': ['eslint']
-\}
