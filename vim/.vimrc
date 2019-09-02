@@ -2,6 +2,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Navigation
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'dyng/ctrlsf.vim'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'justinmk/vim-sneak'
 
@@ -19,6 +20,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'jiangmiao/auto-pairs'
 
 " Visual
+Plug 'https://github.com/danilo-augusto/vim-afterglow.git'
+Plug 'https://github.com/danilo-augusto/vim-afterglow.git'
 Plug 'ayu-theme/ayu-vim'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'vim-airline/vim-airline'
@@ -37,12 +40,15 @@ set expandtab tabstop=2 shiftwidth=2 smarttab
 set ignorecase
 set smartcase
 set smartindent
+
 set mouse=a
+set autoread
 set splitbelow splitright
 set foldmethod=indent foldnestmax=10 nofoldenable foldlevel=2
 
 set cursorline
 set cmdheight=2
+set hlsearch
 
 " mapping shortcuts
 let mapleader = "\,"
@@ -106,14 +112,20 @@ autocmd FileType nerdtree setlocal relativenumber
 noremap <leader>p :Files<cr>
 noremap <leader>f :BLines<cr>
 noremap <leader>b :Buffers<cr>
-noremap <leader><S-f> :Rg<cr>
 noremap <leader><S-p> :Commands<cr>
+
+" ctrls.vim
+nmap <leader>g <Plug>CtrlSFPrompt
+vmap <leader>g <Plug>CtrlSFVwordPath
+nnoremap <leader>gf :CtrlSFToggle<cr>
+let g:ctrlsf_winsize = '30%'
 
 " typescript-vim
 let g:typescript_indent_disable = 1
 
 " vim-airline
-let g:airline_theme='minimalist'
+" let g:airline_theme='minimalist'
+let g:airline_theme='afterglow'
 
 " coc.vim
 set hidden
@@ -135,8 +147,10 @@ let g:NERDTreeIndicatorMapCustom = {
 
 " ayu-vim colorscheme
 set termguicolors
-let ayucolor="mirage"
-colorscheme ayu
+" let ayucolor="mirage"
+" colorscheme ayu
+colorscheme afterglow
+let g:afterglow_blackout=1
 
 " comfortable-motion
 let g:comfortable_motion_scroll_down_key = "j"
@@ -150,3 +164,8 @@ nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impu
 
 " for use with svelte
 au BufNewFile,BufRead,BufReadPost *.svelte set syntax=html
+
+" gitgutter
+nmap <leader>ha <Plug>GitGutterStageHunk
+nmap <leader>hd <Plug>GitGutterUndoHunk
+nmap <leader>hv <Plug>GitGutterPreviewHunk
