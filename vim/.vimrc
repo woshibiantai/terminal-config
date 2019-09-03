@@ -53,22 +53,22 @@ set hlsearch
 " mapping shortcuts
 let mapleader = "\,"
 inoremap jh <Esc>
-noremap <c-c> "*y<CR>
+nnoremap <c-c> "*y<CR>
 inoremap <c-v> <esc>"+pa
-noremap <space><CR> :noh<CR>
+nnoremap <space><CR> :noh<CR>
 
-noremap <leader>s :w<CR>
-noremap <leader>w :q<CR>
-noremap <leader>q :q!<CR>
+nnoremap <leader>s :w<CR>
+nnoremap <leader>w :q<CR>
+nnoremap <leader>q :q!<CR>
 
 inoremap <C-h> <C-o>:wincmd h<CR>
-noremap <C-h> :wincmd h<CR>
+nnoremap <C-h> :wincmd h<CR>
 inoremap <C-j> <C-o>:wincmd j<CR>
-noremap <C-j> :wincmd j<CR>
+nnoremap <C-j> :wincmd j<CR>
 inoremap <C-k> <C-o>:wincmd k<CR>
-noremap <C-k> :wincmd k<CR>
+nnoremap <C-k> :wincmd k<CR>
 inoremap <C-l> <C-o>:wincmd l<CR>
-noremap <C-l> :wincmd l<CR>
+nnoremap <C-l> :wincmd l<CR>
 
 " Switch tab with Cmd + [1-9].
 nnoremap <d-1> :tabn 1<CR>
@@ -105,8 +105,8 @@ set nu rnu
 let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
 
 " nerdtree
-noremap <leader>nn :NERDTreeToggle<CR>
-noremap <leader>nf :NERDTreeFind<CR>
+nnoremap <leader>nn :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let NERDTreeShowLineNumbers=1
@@ -134,6 +134,21 @@ let g:airline_theme='afterglow'
 " coc.vim
 set hidden
 set updatetime=300
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+nmap <silent> gd <Plug>(coc-definition)
+
+nnoremap gh :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+nmap <leader>rr <Plug>(coc-rename)
+nmap <leader>rf <Plug>(coc-format-selected)
+vmap <leader>rf <Plug>(coc-format-selected)
 
 " nerdtree-git-plugin
 let g:NERDTreeIndicatorMapCustom = {
