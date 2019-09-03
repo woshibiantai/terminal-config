@@ -57,6 +57,10 @@ noremap <c-c> "*y<CR>
 inoremap <c-v> <esc>"+pa
 noremap <space><CR> :noh<CR>
 
+noremap <leader>s :w<CR>
+noremap <leader>w :q<CR>
+noremap <leader>q :q!<CR>
+
 inoremap <C-h> <C-o>:wincmd h<CR>
 noremap <C-h> :wincmd h<CR>
 inoremap <C-j> <C-o>:wincmd j<CR>
