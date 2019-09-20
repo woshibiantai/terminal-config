@@ -13,7 +13,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Formatting
 Plug 'editorconfig/editorconfig-vim'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'https://tpope.io/vim/commentary.git'
 Plug 'https://tpope.io/vim/surround.git'
 Plug 'terryma/vim-multiple-cursors'
@@ -32,6 +32,7 @@ Plug 'dense-analysis/ale'
 Plug 'mattn/emmet-vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'posva/vim-vue'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
@@ -57,6 +58,7 @@ nnoremap <c-c> "*y<CR>
 inoremap <c-v> <esc>"+pa
 nnoremap <space><CR> :noh<CR>
 
+nnoremap <leader>d :bd<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>w :q<CR>
 nnoremap <leader>q :q!<CR>
@@ -109,7 +111,10 @@ nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
 let NERDTreeShowLineNumbers=1
+let NERDTreeAutoDeleteBuffer=1
 autocmd FileType nerdtree setlocal relativenumber
 
 " fzf.vim
@@ -118,11 +123,14 @@ noremap <leader>f :BLines<cr>
 noremap <leader>b :Buffers<cr>
 noremap <leader><S-p> :Commands<cr>
 
-" ctrls.vim
+" ctrlsf.vim
 nmap <leader>g <Plug>CtrlSFPrompt
 vmap <leader>g <Plug>CtrlSFVwordPath
 nnoremap <leader>gf :CtrlSFToggle<cr>
 let g:ctrlsf_winsize = '30%'
+let g:ctrlsf_position = 'left'
+let g:ctrlsf_search_mode = 'async'
+let g:ctrlsf_auto_focus = { 'at': 'start' }
 
 " typescript-vim
 let g:typescript_indent_disable = 1
@@ -136,6 +144,7 @@ set hidden
 set updatetime=300
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
 
 nnoremap gh :call <SID>show_documentation()<CR>
 function! s:show_documentation()
@@ -183,6 +192,9 @@ nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impu
 
 " for use with svelte
 au BufNewFile,BufRead,BufReadPost *.svelte set syntax=html
+
+" for use with vue
+let g:vue_pre_processors=[]
 
 " gitgutter
 nmap <leader>ha <Plug>GitGutterStageHunk
