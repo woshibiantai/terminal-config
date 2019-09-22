@@ -20,9 +20,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'jiangmiao/auto-pairs'
 
 " Visual
-Plug 'https://github.com/danilo-augusto/vim-afterglow.git'
-Plug 'https://github.com/danilo-augusto/vim-afterglow.git'
-Plug 'ayu-theme/ayu-vim'
+Plug 'morhetz/gruvbox'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -136,8 +134,7 @@ let g:ctrlsf_auto_focus = { 'at': 'start' }
 let g:typescript_indent_disable = 1
 
 " vim-airline
-" let g:airline_theme='minimalist'
-let g:airline_theme='afterglow'
+let g:airline_theme='gruvbox'
 
 " coc.vim
 set hidden
@@ -173,12 +170,9 @@ let g:NERDTreeIndicatorMapCustom = {
   \ "Unknown"   : "?"
   \ }
 
-" ayu-vim colorscheme
 set termguicolors
-" let ayucolor="mirage"
-" colorscheme ayu
-colorscheme afterglow
-let g:afterglow_blackout=1
+colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
 
 " comfortable-motion
 let g:comfortable_motion_scroll_down_key = "j"
