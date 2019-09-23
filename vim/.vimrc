@@ -5,6 +5,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'justinmk/vim-sneak'
+Plug 'https://github.com/vim-scripts/BufOnly.vim.git'
 
 " Git
 Plug 'https://github.com/tpope/vim-fugitive.git'
