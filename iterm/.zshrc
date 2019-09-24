@@ -1,5 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME=minimal
+# ZSH_THEME=minimal
+ZSH_THEME=powerlevel10k/powerlevel10k
 source $ZSH/oh-my-zsh.sh
 
 plugins=(git)
@@ -17,3 +18,6 @@ export LANG=en_US.UTF-8
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh

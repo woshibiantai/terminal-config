@@ -58,9 +58,9 @@ inoremap <c-v> <esc>"+pa
 nnoremap <space><CR> :noh<CR>
 
 nnoremap <leader>d :bd<CR>
-nnoremap <leader>s :w<CR>
-nnoremap <leader>w :q<CR>
-nnoremap <leader>q :q!<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :q!<CR>
 
 inoremap <C-h> <C-o>:wincmd h<CR>
 nnoremap <C-h> :wincmd h<CR>
@@ -94,7 +94,7 @@ inoremap <d-9> <C-o>:tabn 9<CR>
 inoremap <d-9> <C-o>:tabn 0<CR>
 
 " GUI settings
-set guifont=Menlo:h14
+set guifont=Menlo:h12
 set guioptions-=L
 set guioptions+=e
 
