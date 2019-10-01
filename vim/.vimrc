@@ -58,9 +58,9 @@ inoremap <c-v> <esc>"+pa
 nnoremap <space><CR> :noh<CR>
 
 nnoremap <leader>d :bd<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>Q :q!<CR>
+nnoremap <leader>s :w<CR>
+nnoremap <leader>w :q<CR>
+nnoremap <leader>q :q!<CR>
 
 inoremap <C-h> <C-o>:wincmd h<CR>
 nnoremap <C-h> :wincmd h<CR>
@@ -72,26 +72,12 @@ inoremap <C-l> <C-o>:wincmd l<CR>
 nnoremap <C-l> :wincmd l<CR>
 
 " Switch tab with Cmd + [1-9].
-nnoremap <d-1> :tabn 1<CR>
-nnoremap <d-2> :tabn 2<CR>
-nnoremap <d-3> :tabn 3<CR>
-nnoremap <d-4> :tabn 4<CR>
-nnoremap <d-5> :tabn 5<CR>
-nnoremap <d-6> :tabn 6<CR>
-nnoremap <d-7> :tabn 7<CR>
-nnoremap <d-8> :tabn 8<CR>
-nnoremap <d-9> :tabn 9<CR>
-nnoremap <d-9> :tabn 0<CR>
-inoremap <d-1> <C-o>:tabn 1<CR>
-inoremap <d-2> <C-o>:tabn 2<CR>
-inoremap <d-3> <C-o>:tabn 3<CR>
-inoremap <d-4> <C-o>:tabn 4<CR>
-inoremap <d-5> <C-o>:tabn 5<CR>
-inoremap <d-6> <C-o>:tabn 6<CR>
-inoremap <d-7> <C-o>:tabn 7<CR>
-inoremap <d-8> <C-o>:tabn 8<CR>
-inoremap <d-9> <C-o>:tabn 9<CR>
-inoremap <d-9> <C-o>:tabn 0<CR>
+nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>t1 :tabn 1<CR>
+nnoremap <leader>t2 :tabn 2<CR>
+nnoremap <leader>t3 :tabn 3<CR>
+nnoremap <leader>t4 :tabn 4<CR>
+nnoremap <leader>t5 :tabn 5<CR>
 
 " GUI settings
 set guifont=Menlo:h12
