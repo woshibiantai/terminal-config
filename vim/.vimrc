@@ -54,9 +54,13 @@ set hlsearch
 " mapping shortcuts
 let mapleader = "\,"
 inoremap jh <Esc>
-nnoremap <c-c> "*y<CR>
-inoremap <c-v> <esc>"+pa
 nnoremap <space><CR> :noh<CR>
+
+" copy paste
+noremap <Leader>c "*y
+noremap <Leader>v "*p
+noremap <Leader>C "+y
+noremap <Leader>V "+p
 
 nnoremap <leader>d :bd<CR>
 nnoremap <leader>s :w<CR>
