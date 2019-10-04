@@ -62,11 +62,13 @@ noremap <Leader>v "*p
 noremap <Leader>C "+y
 noremap <Leader>V "+p
 
+" window management
 nnoremap <leader>d :bd<CR>
 nnoremap <leader>s :w<CR>
 nnoremap <leader>w :q<CR>
 nnoremap <leader>q :q!<CR>
 
+" pane navigation
 inoremap <C-h> <C-o>:wincmd h<CR>
 nnoremap <C-h> :wincmd h<CR>
 inoremap <C-j> <C-o>:wincmd j<CR>
@@ -77,12 +79,12 @@ inoremap <C-l> <C-o>:wincmd l<CR>
 nnoremap <C-l> :wincmd l<CR>
 
 " Switch tab with Cmd + [1-9].
-nnoremap <leader>tn :tabnew<CR>
-nnoremap <leader>t1 :tabn 1<CR>
-nnoremap <leader>t2 :tabn 2<CR>
-nnoremap <leader>t3 :tabn 3<CR>
-nnoremap <leader>t4 :tabn 4<CR>
-nnoremap <leader>t5 :tabn 5<CR>
+nnoremap <leader>t :tabnew<CR>
+nnoremap <leader>1 :tabn 1<CR>
+nnoremap <leader>2 :tabn 2<CR>
+nnoremap <leader>3 :tabn 3<CR>
+nnoremap <leader>4 :tabn 4<CR>
+nnoremap <leader>5 :tabn 5<CR>
 
 " GUI settings
 set guifont=Menlo:h12
