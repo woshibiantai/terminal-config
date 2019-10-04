@@ -25,6 +25,7 @@ Plug 'morhetz/gruvbox'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " Completion
 Plug 'dense-analysis/ale'
