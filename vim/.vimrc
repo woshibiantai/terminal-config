@@ -184,7 +184,13 @@ au BufNewFile,BufRead,BufReadPost *.svelte set syntax=html
 " for use with vue
 let g:vue_pre_processors=[]
 
-" gitgutter
-nmap <leader>ha <Plug>GitGutterStageHunk
-nmap <leader>hd <Plug>GitGutterUndoHunk
-nmap <leader>hv <Plug>GitGutterPreviewHunk
+" Git
+nmap <space>ga :Git add -p<CR>
+nmap <space>gb :Gblame<CR>
+nmap <space>gc :Gcommit<CR>
+nmap <space>gca :Gcommit --amend<CR>
+nmap <space>gd :Gdiff<CR>
+nmap <space>gp :Gpush<CR>
+nmap <space>gs :Gstatus<CR>
+nmap <space>gv <Plug>GitGutterPreviewHunk
+nmap <space>gw :Gwrite<CR>
