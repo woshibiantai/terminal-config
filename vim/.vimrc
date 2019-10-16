@@ -54,7 +54,12 @@ set hlsearch
 " mapping shortcuts
 let mapleader = "\,"
 inoremap jh <Esc>
-nnoremap <space><CR> :noh<CR>
+
+" remove highlight
+nnoremap <space><CR> :noh<CR> 
+
+" search and replace
+nnoremap <Leader>F :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
 " copy paste
 noremap <Leader>c "*y
@@ -189,8 +194,9 @@ nmap <space>ga :Git add -p<CR>
 nmap <space>gb :Gblame<CR>
 nmap <space>gc :Gcommit<CR>
 nmap <space>gca :Gcommit --amend<CR>
-nmap <space>gd :Gdiff<CR>
+nmap <space>gd :Gdiff
 nmap <space>gp :Gpush<CR>
 nmap <space>gs :Gstatus<CR>
 nmap <space>gv <Plug>GitGutterPreviewHunk
 nmap <space>gw :Gwrite<CR>
+nmap <space>go :Gvsplit
