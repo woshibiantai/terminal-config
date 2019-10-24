@@ -120,7 +120,7 @@ noremap <leader>p :Files<cr>
 noremap <leader>f :BLines<cr>
 noremap <leader>b :Buffers<cr>
 noremap <leader><S-p> :Commands<cr>
-noremap <leader><S-f> :Rg<cr>
+noremap <leader>e :Rg<CR>
 
 " for fzf Rg to search with preview
 command! -bang -nargs=* Rg
