@@ -59,6 +59,7 @@ inoremap jh <Esc>
 nnoremap <space><CR> :noh<CR> 
 
 " search and replace
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 nnoremap <Leader>F :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
 " copy paste
@@ -121,8 +122,8 @@ noremap <leader>b :Buffers<cr>
 noremap <leader><S-p> :Commands<cr>
 
 " ctrlsf.vim
-nmap <leader>g <Plug>CtrlSFPrompt
-vmap <leader>g <Plug>CtrlSFVwordPath
+nmap <leader>gg <Plug>CtrlSFPrompt
+vmap <leader>gg <Plug>CtrlSFVwordPath
 nnoremap <leader>gf :CtrlSFToggle<cr>
 let g:ctrlsf_winsize = '30%'
 let g:ctrlsf_position = 'left'
