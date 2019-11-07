@@ -103,6 +103,9 @@ set guioptions+=e
 set number relativenumber
 set nu rnu
 
+" enable matchit
+runtime macros/matchit.vim
+
 " ale
 let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
 
