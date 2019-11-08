@@ -3,14 +3,13 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
-Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'https://github.com/tpope/vim-vinegar.git'
 Plug 'justinmk/vim-sneak'
 Plug 'https://github.com/vim-scripts/BufOnly.vim.git'
 
 " Git
 Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'https://github.com/airblade/vim-gitgutter.git'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Formatting
 Plug 'editorconfig/editorconfig-vim'
@@ -109,16 +108,9 @@ runtime macros/matchit.vim
 " ale
 let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
 
-" nerdtree
-nnoremap <leader>nn :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-let NERDTreeMinimalUI=1
-let NERDTreeDirArrows=1
-let NERDTreeShowLineNumbers=1
-let NERDTreeAutoDeleteBuffer=1
-autocmd FileType nerdtree setlocal relativenumber
+" netrw
+let g:netrw_liststyle=3
+let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 
 " fzf.vim
 noremap <leader>p :Files<cr>
@@ -158,33 +150,11 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
-nnoremap gh :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
 nmap <leader>rr <Plug>(coc-rename)
 nmap <leader>rf <Plug>(coc-format-selected)
 vmap <leader>rf <Plug>(coc-format-selected)
 
-" nerdtree-git-plugin
-let g:NERDTreeIndicatorMapCustom = {
-  \ "Modified"  : "•",
-  \ "Staged"    : "+",
-  \ "Untracked" : "*",
-  \ "Renamed"   : "➜",
-  \ "Unmerged"  : "═",
-  \ "Deleted"   : "✖",
-  \ "Dirty"     : "x",
-  \ "Clean"     : "✔︎",
-  \ 'Ignored'   : '☒',
-  \ "Unknown"   : "?"
-  \ }
-
+" gruvbox
 set termguicolors
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
