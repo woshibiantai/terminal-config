@@ -186,3 +186,8 @@ nmap <space>gs :Gstatus<CR>
 nmap <space>gv <Plug>GitGutterPreviewHunk
 nmap <space>gw :Gwrite<CR>
 nmap <space>go :Gvsplit
+
+" Oni config test
+if exists('g:gui_oni')
+  au FileType fzf tnoremap <nowait><buffer> <esc> <c-g> "Close FZF in neovim with esc
+endif
