@@ -21,6 +21,7 @@ Plug 'jiangmiao/auto-pairs'
 
 " Visual
 Plug 'morhetz/gruvbox'
+Plug 'arcticicestudio/nord-vim'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -140,7 +141,8 @@ let g:ctrlsf_auto_focus = { 'at': 'start' }
 let g:typescript_indent_disable = 1
 
 " vim-airline
-let g:airline_theme='gruvbox'
+" let g:airline_theme='gruvbox'
+let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
 
 " coc.vim
@@ -156,8 +158,9 @@ vmap <leader>rf <Plug>(coc-format-selected)
 
 " gruvbox
 set termguicolors
-colorscheme gruvbox
-let g:gruvbox_contrast_dark='hard'
+" colorscheme gruvbox
+" let g:gruvbox_contrast_dark='hard'
+colorscheme nord
 
 " comfortable-motion
 let g:comfortable_motion_scroll_down_key = "j"
