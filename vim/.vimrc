@@ -38,20 +38,22 @@ Plug 'https://github.com/leafgarland/typescript-vim.git'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
 
-set expandtab tabstop=2 shiftwidth=2 smarttab
+" formatting preferences
+set encoding=UTF-8
 set ignorecase
 set smartcase
 set smartindent
+set expandtab tabstop=2 shiftwidth=2 smarttab
+set foldmethod=indent foldnestmax=10 nofoldenable foldlevel=2
 
+" interface preferences
 set mouse=a
 set autoread
 set splitbelow splitright
-set foldmethod=indent foldnestmax=10 nofoldenable foldlevel=2
-
 set cursorline
 set cmdheight=2
 set hlsearch
-set encoding=UTF-8
+autocmd InsertEnter,InsertLeave * set cul!
 
 " mapping shortcuts
 let mapleader = "\,"
@@ -112,6 +114,7 @@ let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
 " netrw
 let g:netrw_liststyle=3
 let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
+autocmd FileType netrw setl bufhidden=delete
 
 " fzf.vim
 noremap <leader>p :Files<cr>
