@@ -58,7 +58,9 @@ autocmd InsertEnter,InsertLeave * set cul!
 
 " mapping shortcuts
 let mapleader = "\,"
-inoremap jh <Esc>
+inoremap jj <Esc>
+nnoremap <Leader><Leader>v :tabnew ~/terminal-config/vim/.vimrc <CR>
+nnoremap <Leader><Leader>r :source ~/.vimrc <CR>
 
 " remove highlight
 nnoremap <space><CR> :noh<CR> 
