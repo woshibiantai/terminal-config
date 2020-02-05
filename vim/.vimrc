@@ -34,6 +34,7 @@ Plug 'mattn/emmet-vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'posva/vim-vue'
+Plug 'evanleck/vim-svelte'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 call plug#end()
@@ -174,9 +175,6 @@ nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impu
 nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
 nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
 nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
-
-" for use with svelte
-au BufNewFile,BufRead,BufReadPost *.svelte set syntax=html
 
 " for use with vue
 let g:vue_pre_processors=[]
