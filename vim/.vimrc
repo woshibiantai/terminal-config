@@ -103,6 +103,7 @@ nnoremap <leader>5 :tabn 5<CR>
 set guifont=MesloLGS_Nerd_Font:h12
 set guioptions-=L
 set guioptions+=e
+colorscheme nord
 
 " turn hybrid line numbers on
 set number relativenumber
@@ -147,7 +148,6 @@ let g:ctrlsf_auto_focus = { 'at': 'start' }
 let g:typescript_indent_disable = 1
 
 " vim-airline
-" let g:airline_theme='gruvbox'
 let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
 
@@ -176,12 +176,6 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rr <Plug>(coc-rename)
 nmap <leader>rf <Plug>(coc-format-selected)
 vmap <leader>rf <Plug>(coc-format-selected)
-
-" gruvbox
-set termguicolors
-" colorscheme gruvbox
-" let g:gruvbox_contrast_dark='hard'
-colorscheme nord
 
 " comfortable-motion
 let g:comfortable_motion_scroll_down_key = "j"
