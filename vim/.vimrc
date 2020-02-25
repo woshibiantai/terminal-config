@@ -14,7 +14,7 @@ Plug 'https://github.com/airblade/vim-gitgutter.git'
 " Formatting
 Plug 'editorconfig/editorconfig-vim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-Plug 'https://tpope.io/vim/commentary.git'
+Plug 'tomtom/tcomment_vim'
 Plug 'https://tpope.io/vim/surround.git'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'jiangmiao/auto-pairs'
