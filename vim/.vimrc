@@ -13,7 +13,6 @@ Plug 'https://github.com/airblade/vim-gitgutter.git'
 
 " Formatting
 Plug 'editorconfig/editorconfig-vim'
-Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'tomtom/tcomment_vim'
 Plug 'https://tpope.io/vim/surround.git'
 Plug 'terryma/vim-multiple-cursors'
@@ -51,7 +50,6 @@ set foldmethod=indent foldnestmax=10 nofoldenable foldlevel=2
 set mouse=a
 set autoread
 set splitbelow splitright
-set cursorline
 set cmdheight=2
 set hlsearch
 autocmd InsertEnter,InsertLeave * set cul!
@@ -111,9 +109,6 @@ set nu rnu
 
 " enable matchit
 runtime macros/matchit.vim
-
-" ale
-let b:ale_fixers = {'javascript': ['prettier', 'eslint']}
 
 " netrw
 let g:netrw_liststyle=3
