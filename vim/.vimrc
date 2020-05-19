@@ -15,7 +15,6 @@ Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'https://tpope.io/vim/surround.git'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'jiangmiao/auto-pairs'
 
 " Visual
