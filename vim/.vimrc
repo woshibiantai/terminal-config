@@ -15,10 +15,12 @@ Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'https://tpope.io/vim/surround.git'
+Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Visual
-Plug 'morhetz/gruvbox'
+Plug 'franbach/miramare'
 Plug 'arcticicestudio/nord-vim'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'vim-airline/vim-airline'
@@ -100,7 +102,7 @@ nnoremap <leader>5 :tabn 5<CR>
 set guifont=MesloLGS_Nerd_Font:h12
 set guioptions-=L
 set guioptions+=e
-colorscheme nord
+colorscheme miramare
 
 " turn hybrid line numbers on
 set number relativenumber
@@ -120,6 +122,7 @@ noremap <leader>f :BLines<cr>
 noremap <leader>b :Buffers<cr>
 noremap <leader><S-p> :Commands<cr>
 noremap <leader>e :Rg<CR>
+noremap <leader>m :Marks<cr>
 
 " for fzf Rg to search with preview
 command! -bang -nargs=* Rg
@@ -142,7 +145,7 @@ let g:ctrlsf_auto_focus = { 'at': 'start' }
 let g:typescript_indent_disable = 1
 
 " vim-airline
-let g:airline_theme='nord'
+let g:airline_theme='miramare'
 let g:airline_powerline_fonts = 1
 
 " coc.vim
@@ -168,8 +171,6 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 
 nmap <leader>rr <Plug>(coc-rename)
-nmap <leader>rf <Plug>(coc-format-selected)
-vmap <leader>rf <Plug>(coc-format-selected)
 
 " comfortable-motion
 let g:comfortable_motion_scroll_down_key = "j"
@@ -192,11 +193,6 @@ nmap <space>gca :Gcommit --amend<CR>
 nmap <space>gd :Gdiff
 nmap <space>gp :Gpush<CR>
 nmap <space>gs :Gstatus<CR>
-nmap <space>gv <Plug>GitGutterPreviewHunk
+nmap <space>gv <Plug>(GitGutterPreviewHunk)
 nmap <space>gw :Gwrite<CR>
 nmap <space>go :Gvsplit
-
-" Oni config test
-if exists('g:gui_oni')
-  au FileType fzf tnoremap <nowait><buffer> <esc> <c-g> "Close FZF in neovim with esc
-endif
