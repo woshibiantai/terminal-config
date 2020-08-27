@@ -147,6 +147,8 @@ let g:typescript_indent_disable = 1
 " vim-airline
 let g:airline_theme='miramare'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " coc.vim
 set hidden
