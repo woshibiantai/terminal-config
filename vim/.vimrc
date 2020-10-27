@@ -188,13 +188,10 @@ nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impu
 let g:vue_pre_processors=[]
 
 " Git
-nmap <space>ga :Git add -p<CR>
 nmap <space>gb :Gblame<CR>
-nmap <space>gc :Gcommit<CR>
-nmap <space>gca :Gcommit --amend<CR>
 nmap <space>gd :Gdiff
-nmap <space>gp :Gpush<CR>
 nmap <space>gs :Gstatus<CR>
 nmap <space>gv <Plug>(GitGutterPreviewHunk)
-nmap <space>gw :Gwrite<CR>
 nmap <space>go :Gvsplit
+nmap <space>dp :diffput
+nmap <space>dg :diffget
