@@ -36,7 +36,15 @@ Plug 'plasticboy/vim-markdown'
 Plug 'posva/vim-vue'
 Plug 'evanleck/vim-svelte'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 " formatting preferences
@@ -150,35 +158,11 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-" coc.vim
-set hidden
-set updatetime=300
-"
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gr <Plug>(coc-references)
-
-nmap <leader>rr <Plug>(coc-rename)
-
 " comfortable-motion
 let g:comfortable_motion_scroll_down_key = "j"
 let g:comfortable_motion_scroll_up_key = "k"
 let g:comfortable_motion_no_default_key_mappings = 1
-let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
+let g:comfortable_motion_impulse_multiplier = 0.7  " Feel free to increase/decrease this value.
 nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
 nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
 nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
@@ -195,3 +179,6 @@ nmap <space>gv <Plug>(GitGutterPreviewHunk)
 nmap <space>go :Gvsplit
 nmap <space>dp :diffput
 nmap <space>dg :diffget
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
