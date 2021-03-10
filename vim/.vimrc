@@ -45,6 +45,8 @@ else
 endif
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'Shougo/echodoc.vim'
 call plug#end()
 
 " formatting preferences
@@ -181,4 +183,21 @@ nmap <space>dp :diffput
 nmap <space>dg :diffget
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
+if has('nvim')
+  let g:deoplete#enable_at_startup = 1
+endif
+
+" deoplete-ternjs
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#filetypes = [
+                \ 'jsx',
+                \ 'javascript.jsx',
+                \ 'vue',
+                \ 'svelte'
+                \ ]
+
+" echodoc
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'floating'
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
