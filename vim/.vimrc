@@ -36,17 +36,10 @@ Plug 'plasticboy/vim-markdown'
 Plug 'posva/vim-vue'
 Plug 'evanleck/vim-svelte'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'Shougo/echodoc.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " formatting preferences
@@ -182,22 +175,14 @@ nmap <space>go :Gvsplit
 nmap <space>dp :diffput
 nmap <space>dg :diffget
 
-" Deoplete
-if has('nvim')
-  let g:deoplete#enable_at_startup = 1
-endif
-
-" deoplete-ternjs
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#docs = 1
-let g:deoplete#sources#ternjs#filetypes = [
-                \ 'jsx',
-                \ 'javascript.jsx',
-                \ 'vue',
-                \ 'svelte'
-                \ ]
-
-" echodoc
-let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+" coc
+let g:coc_global_extensions = [
+  \ 'coc-actions',
+  \ 'coc-tsserver',
+  \ 'coc-css',
+  \ 'coc-json',
+  \ 'coc-html',
+  \ 'coc-vimlsp',
+  \ 'coc-highlight',
+  \ 'coc-ember'
+\]
