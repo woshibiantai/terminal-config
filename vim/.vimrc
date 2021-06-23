@@ -40,6 +40,7 @@ Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
 
 " formatting preferences
