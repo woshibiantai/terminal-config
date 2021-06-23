@@ -186,3 +186,4 @@ let g:coc_global_extensions = [
   \ 'coc-highlight',
   \ 'coc-ember'
 \]
+nmap gd <Plug>(coc-definition)
