@@ -121,7 +121,7 @@ let g:netrw_bufsettings = 'noma nomod nu rnu nobl nowrap ro'
 autocmd FileType netrw setl bufhidden=delete
 
 " fzf.vim
-noremap <leader>p :Files<cr>
+noremap <leader>p :GFiles<cr>
 noremap <leader>f :BLines<cr>
 noremap <leader>b :Buffers<cr>
 noremap <leader><S-p> :Commands<cr>
