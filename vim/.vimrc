@@ -37,8 +37,6 @@ Plug 'posva/vim-vue'
 Plug 'evanleck/vim-svelte'
 Plug 'https://github.com/leafgarland/typescript-vim.git'
 Plug 'joukevandermaas/vim-ember-hbs'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
@@ -94,19 +92,21 @@ nnoremap <C-k> :wincmd k<CR>
 inoremap <C-l> <C-o>:wincmd l<CR>
 nnoremap <C-l> :wincmd l<CR>
 
-" Switch tab with Cmd + [1-9].
+" tab navigation
 nnoremap <leader>t :tabnew<CR>
-nnoremap <leader>1 :tabn 1<CR>
-nnoremap <leader>2 :tabn 2<CR>
-nnoremap <leader>3 :tabn 3<CR>
-nnoremap <leader>4 :tabn 4<CR>
-nnoremap <leader>5 :tabn 5<CR>
+nnoremap <leader>r :tabp<CR>
+nnoremap <leader>y :tabn<CR>
 
 " GUI settings
 set guifont=MesloLGS_Nerd_Font:h12
 set guioptions-=L
 set guioptions+=e
+let g:miramare_transparent_background=1
 colorscheme miramare
+:hi Search ctermfg=Black ctermbg=DarkYellow
+:hi TabLineFill ctermfg=Black ctermbg=Black
+:hi TabLine ctermfg=White ctermbg=DarkGray
+:hi TabLineSel ctermfg=Black ctermbg=Green
 
 " turn hybrid line numbers on
 set number relativenumber
@@ -168,13 +168,16 @@ nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impu
 let g:vue_pre_processors=[]
 
 " Git
-nmap <space>gb :Gblame<CR>
-nmap <space>gd :Gdiff
-nmap <space>gs :Gstatus<CR>
+nmap <space>gb :G blame<CR>
+nmap <space>gd :Gvdiff
 nmap <space>gv <Plug>(GitGutterPreviewHunk)
 nmap <space>go :Gvsplit
 nmap <space>dp :diffput
 nmap <space>dg :diffget
+
+" Fugitive Conflict Resolution
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
 
 " coc
 let g:coc_global_extensions = [
@@ -188,3 +191,7 @@ let g:coc_global_extensions = [
   \ 'coc-ember'
 \]
 nmap gd <Plug>(coc-definition)
+
+"svelte
+let g:svelte_indent_script = 0
+let g:svelte_indent_style = 0
