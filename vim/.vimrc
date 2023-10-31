@@ -29,6 +29,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'ryanoasis/vim-devicons'
 
 " Completion
+Plug 'burnettk/vim-angular'
 Plug 'dense-analysis/ale'
 Plug 'mattn/emmet-vim'
 Plug 'godlygeek/tabular'
@@ -85,11 +86,8 @@ nnoremap <leader>q :q!<CR>
 " pane navigation
 inoremap <C-h> <C-o>:wincmd h<CR>
 nnoremap <C-h> :wincmd h<CR>
-inoremap <C-j> <C-o>:wincmd j<CR>
 nnoremap <C-j> :wincmd j<CR>
-inoremap <C-k> <C-o>:wincmd k<CR>
 nnoremap <C-k> :wincmd k<CR>
-inoremap <C-l> <C-o>:wincmd l<CR>
 nnoremap <C-l> :wincmd l<CR>
 
 " tab navigation
@@ -188,10 +186,20 @@ let g:coc_global_extensions = [
   \ 'coc-html',
   \ 'coc-vimlsp',
   \ 'coc-highlight',
-  \ 'coc-ember'
+  \ 'coc-ember',
 \]
 nmap gd <Plug>(coc-definition)
 
 "svelte
 let g:svelte_indent_script = 0
 let g:svelte_indent_style = 0
+
+"angular
+let g:angular_find_ignore = ['build/', 'node_modules/']
+
+
+"coc-css
+autocmd FileType scss setl iskeyword+=@-@
+
+"coc-snippets
+inoremap <C-l> <Plug>(coc-snippets-expand)
