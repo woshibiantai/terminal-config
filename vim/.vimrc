@@ -20,7 +20,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Visual
-Plug 'franbach/miramare'
+Plug 'bluz71/vim-nightfly-colors', { 'as': 'nightfly' }
 Plug 'arcticicestudio/nord-vim'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'vim-airline/vim-airline'
@@ -40,6 +40,7 @@ Plug 'https://github.com/leafgarland/typescript-vim.git'
 Plug 'joukevandermaas/vim-ember-hbs'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'github/copilot.vim'
 call plug#end()
 
 " formatting preferences
@@ -99,12 +100,7 @@ nnoremap <leader>y :tabn<CR>
 set guifont=MesloLGS_Nerd_Font:h12
 set guioptions-=L
 set guioptions+=e
-let g:miramare_transparent_background=1
-colorscheme miramare
-:hi Search ctermfg=Black ctermbg=DarkYellow
-:hi TabLineFill ctermfg=Black ctermbg=Black
-:hi TabLine ctermfg=White ctermbg=DarkGray
-:hi TabLineSel ctermfg=Black ctermbg=Green
+colorscheme nightfly
 
 " turn hybrid line numbers on
 set number relativenumber
@@ -131,7 +127,7 @@ command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \           : fzf#vim#with_preview('right:50%:hidden', '^'),
   \   <bang>0)
 
 " ctrlsf.vim
@@ -146,8 +142,11 @@ let g:ctrlsf_auto_focus = { 'at': 'start' }
 " typescript-vim
 let g:typescript_indent_disable = 1
 
+" view errors in diagnostic list
+nmap <leader>le <Cmd>call CocActionAsync('diagnosticList')<CR>
+
+
 " vim-airline
-let g:airline_theme='miramare'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -203,3 +202,5 @@ autocmd FileType scss setl iskeyword+=@-@
 
 "coc-snippets
 inoremap <C-l> <Plug>(coc-snippets-expand)
+let g:coc_snippet_next = '<c-;>'
+let g:coc_snippet_previous = '<c-k>'
