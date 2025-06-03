@@ -101,6 +101,7 @@ set guifont=MesloLGS_Nerd_Font:h12
 set guioptions-=L
 set guioptions+=e
 colorscheme nightfly
+set termguicolors
 
 " turn hybrid line numbers on
 set number relativenumber
